@@ -14,6 +14,7 @@ type ItemUsecase interface {
 	CreateItem(ctx context.Context, input CreateItemInput) (*entity.Item, error)
 	DeleteItem(ctx context.Context, id int64) error
 	GetCategorySummary(ctx context.Context) (*CategorySummary, error)
+	UpdateItem(ctx context.Context, id int64, input UpdateItemInput) (*entity.Item, error)
 }
 
 type CreateItemInput struct {

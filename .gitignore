@@ -1,4 +1,5 @@
 /.env
+/.env.example
 docker
 tmp
 data

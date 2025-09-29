@@ -145,7 +145,6 @@ func (u *itemUsecase) UpdateItem(ctx context.Context, id int64, input UpdateItem
 		return nil, domainErrors.ErrInvalidInput
 	}
 
-	// 既存のアイテムを取得
 	item, err := u.itemRepo.FindByID(ctx, id)
 	if err != nil {
 		if domainErrors.IsNotFoundError(err) {
@@ -154,7 +153,6 @@ func (u *itemUsecase) UpdateItem(ctx context.Context, id int64, input UpdateItem
 		return nil, fmt.Errorf("failed to retrieve item: %w", err)
 	}
 
-	// 更新可能なフィールドのみを更新
 	if input.Name != nil {
 		if len(*input.Name) > 100 {
 			return nil, fmt.Errorf("%w: name must be 100 characters or less", domainErrors.ErrInvalidInput)
@@ -176,7 +174,7 @@ func (u *itemUsecase) UpdateItem(ctx context.Context, id int64, input UpdateItem
 		item.PurchasePrice = *input.PurchasePrice
 	}
 
-	// アイテムを更新
+	// 更新処理
 	updatedItem, err := u.itemRepo.Update(ctx, item)
 	if err != nil {
 		return nil, fmt.Errorf("failed to update item: %w", err)

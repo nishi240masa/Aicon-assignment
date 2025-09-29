@@ -24,9 +24,15 @@ type CreateItemInput struct {
 	PurchaseDate  string `json:"purchase_date"`
 }
 
+type UpdateItemInput struct {
+	Name          *string `json:"name,omitempty"`
+	Brand         *string `json:"brand,omitempty"`
+	PurchasePrice *int    `json:"purchase_price,omitempty"`
+}
+
 type CategorySummary struct {
 	Categories map[string]int `json:"categories"`
-	Total      int            `json:"total"`
+	Total      int           `json:"total"`
 }
 
 type itemUsecase struct {
